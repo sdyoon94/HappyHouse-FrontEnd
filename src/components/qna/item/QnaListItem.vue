@@ -1,12 +1,12 @@
 <template>
   <tr>
-    <router-link :to="{ name: 'qnaDetail', params: { QnAIndex: QnAIndex } }">
-      <td>{{ QnAIndex }}</td>
+    <router-link :to="{ name: 'qnaDetail', params: { QnAIndex: qnAIndex } }">
+      <td>{{ qnAIndex }}</td>
       <td>
-        {{ QnATitle }}
+        {{ qnATitle }}
       </td>
       <td>{{ userId }}</td>
-      <td>{{ QnARegtime }}</td>
+      <td>{{ qnARegtime }}</td>
     </router-link>
   </tr>
 </template>
@@ -15,11 +15,11 @@
 export default {
   name: "QnaListItem",
   props: {
-    QnAIndex: Number,
+    qnAIndex: Number,
     userId: String,
-    QnARegtime: String,
-    QnATitle: String,
-    QnAContent: String,
+    qnARegtime: String,
+    qnATitle: String,
+    qnAContent: String,
     public: Boolean,
   },
 };

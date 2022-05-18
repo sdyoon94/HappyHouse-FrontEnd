@@ -32,17 +32,7 @@ export default {
   },
   data() {
     return {
-      // qnaLists: [],
-      qnaLists: [
-        {
-          QnAIndex: 1,
-          userId: "ssafy_admin",
-          QnARegtime: "2022-02-02 13:22:22",
-          QnATitle: "test Q&A",
-          QnAContent: "test content 입니다.",
-          public: true,
-        },
-      ],
+      qnaLists: [],
       loginedUser: "admin",
     };
   },

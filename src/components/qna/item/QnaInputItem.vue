@@ -53,7 +53,7 @@ export default {
         userId: "admin",
         QnATitle: "",
         QnAcontent: "",
-        private: false,
+        Private: false,
       },
     };
   },
@@ -62,17 +62,12 @@ export default {
   },
   created() {
     if (this.type === "modify") {
-      // http.get(`/qna/${this.$route.params.QnAIndex}`).then(({ data }) => {
-      // this.qna.userId=data.qna.userId
-      //   this.qna.QnATitle = data.qna.QnATitle;
-      //   this.qna.QnAcontent = data.qna.QnAcontent;
-      //   this.qna.private = data.qna.private;
-      //   // this.qna = data;
-      // });
-
-      this.qna.QnATitle = "test Q&A";
-      this.qna.QnAcontent = "test content 입니다.";
-      this.qna.private = true;
+      http.get(`/qna/${this.$route.params.QnAIndex}`).then(({ data }) => {
+        this.qna.userId = data.userId;
+        this.qna.QnATitle = data.qnATitle;
+        this.qna.QnAcontent = data.qnAContent;
+        this.qna.Private = data.private;
+      });
     }
   },
   methods: {
@@ -99,19 +94,22 @@ export default {
       this.qna.QnAcontent = "";
     },
     registQna() {
-      console.log("regist"),
+      console.log(this.qna),
         http
           .post(`/qna`, {
             userId: this.qna.userId,
-            QnATitle: this.qna.QnATitle,
-            QnAContent: this.qna.QnAcontent,
-            private: this.qna.private,
+            qnATitle: this.qna.QnATitle,
+            qnAContent: this.qna.QnAcontent,
+            private1: this.qna.private,
           })
           .then(({ data }) => {
-            let msg = "등록 처리시 문제가 발생했습니다.";
-            if (data === "success") {
-              msg = "등록이 완료되었습니다.";
-            }
+            console.log("결과 : ", data);
+            let msg = "등록이 완료되었습니다.";
+            alert(msg);
+            this.moveList();
+          })
+          .catch(() => {
+            let msg = "등록 중 오류가 발생하였습니다.";
             alert(msg);
             this.moveList();
           });
@@ -119,18 +117,21 @@ export default {
     modifyQna() {
       console.log("modify"),
         http
-          .put(`/qna/${this.$route.params.QnAIndex}`, {
-            QnAIndex: this.$route.params.QnAIndex,
+          .put(`/qna`, {
+            qnAIndex: this.$route.params.QnAIndex,
             userId: this.qna.userId,
-            QnATitle: this.qna.QnATitle,
-            QnAContent: this.qna.QnAcontent,
-            private: this.qna.private,
+            qnATitle: this.qna.QnATitle,
+            qnAContent: this.qna.QnAcontent,
+            private1: this.qna.private,
           })
           .then(({ data }) => {
-            let msg = "수정 처리시 문제가 발생했습니다.";
-            if (data === "success") {
-              msg = "수정이 완료되었습니다.";
-            }
+            console.log("결과 : ", data);
+            let msg = "등록이 완료되었습니다.";
+            alert(msg);
+            this.moveList();
+          })
+          .catch(() => {
+            let msg = "등록 중 오류가 발생하였습니다.";
             alert(msg);
             this.moveList();
           });

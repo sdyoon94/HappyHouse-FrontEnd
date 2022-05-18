@@ -12,26 +12,26 @@ export default {
   components: { QnaInputItem },
   data() {
     return {
-      // qnaLists: [],
-      qnaLists: [
-        {
-          QnAIndex: 1,
-          userId: "ssafy_admin",
-          QnARegtime: "2022-02-02 13:22:22",
-          QnATitle: "test Q&A",
-          QnAContent: "test content 입니다.",
-          public: true,
-        },
-      ],
-      qnaCommentLists: [
-        {
-          commentIndex: 1,
-          commentContent: "commentContent",
-          commentRegtime: "2022-02-02 13:22:22",
-          QnAIndex: 1,
-        },
-      ],
-      // qnaCommentLists: [{}],
+      qnaLists: [],
+      // qnaLists: [
+      //   {
+      //     QnAIndex: 1,
+      //     userId: "ssafy_admin",
+      //     QnARegtime: "2022-02-02 13:22:22",
+      //     QnATitle: "test Q&A",
+      //     QnAContent: "test content 입니다.",
+      //     public: true,
+      //   },
+      // ],
+      // qnaCommentLists: [
+      //   {
+      //     commentIndex: 1,
+      //     commentContent: "commentContent",
+      //     commentRegtime: "2022-02-02 13:22:22",
+      //     QnAIndex: 1,
+      //   },
+      // ],
+      qnaCommentLists: [],
       loginedUser: "admin",
     };
   },
@@ -40,7 +40,7 @@ export default {
     http.get(`/qna/${this.$route.params.QnAIndex}`).then(({ data }) => {
       this.qnaLists = data;
     });
-    http.get(`/comment/${this.$route.params.QnAIndex}`).then(({ data }) => {
+    http.get(`/qna/comment/${this.$route.params.QnAIndex}`).then(({ data }) => {
       this.qnaCommentLists = data;
     });
   },
