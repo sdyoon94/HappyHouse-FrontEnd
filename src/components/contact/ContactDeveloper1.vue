@@ -2,29 +2,41 @@
   <div class="left_side">
     <div class="left_content">
       <img src="@/assets/김희성.jpg" alt="이미지가 없습니다." /><br /><br />
-      <span>김희성</span>
+      <span>김희성</span><br /><br />
     </div>
-    <div class="right_content">
-      <div>이메일 : khsung0@nate.com</div>
-      <div>
-        깃허브 주소 :
-        <a href="https://github.com/khsung0" target="_blank"
-          >https://github.com/khsung0</a
-        >
-      </div>
-      <div>
-        포트폴리오 주소 :
-        <a href="https://khsung0.wixsite.com/portfolio" target="_blank"
-          >https://khsung0.wixsite.com/portfolio</a
-        >
-      </div>
-
-      <div>
-        블로그 주소 :
-        <a href="https://khsung0.tistory.com" target="_blank"
-          >https://khsung0.tistory.com</a
-        >
-      </div>
+    <div class="right_content" style="padding-left: 100px">
+      <table class="table table-bordered">
+        <tbody>
+          <tr style="width: 300px">
+            <td>이메일</td>
+            <td>khsung0@nate.com</td>
+          </tr>
+          <tr>
+            <td>깃허브</td>
+            <td>
+              <a href="https://github.com/khsung0" target="_blank"
+                >https://github.com/khsung0</a
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>포트폴리오</td>
+            <td>
+              <a href="https://khsung0.wixsite.com/portfolio" target="_blank"
+                >https://khsung0.wixsite.com/portfolio</a
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>블로그</td>
+            <td>
+              <a href="https://khsung0.tistory.com" target="_blank"
+                >https://khsung0.tistory.com</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
@@ -37,15 +49,13 @@ export default {};
 img {
   width: 200px;
 }
-.left_side {
-  float: left;
-  width: 50%;
-}
+
 .left_content {
   float: left;
 }
 .right_content {
   padding-top: 50px;
+  float: left;
 }
 .right_content > div {
   padding-top: 25px;

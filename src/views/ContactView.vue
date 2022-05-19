@@ -1,13 +1,7 @@
-<!-- 
-   div 구성 위치
-          left_side                           right_side
-left_content    right_content         left_content    right_content
-
--->
-
 <template>
   <div class="contact">
     <contact-developer-1></contact-developer-1>
+    <div style="clear: both"></div>
     <contact-developer-2></contact-developer-2>
   </div>
 </template>
