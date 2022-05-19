@@ -13,9 +13,9 @@
             >Home</router-link
           >
           <router-link
-            to="/notice"
+            to="/announcement"
             class="list-group-item list-group-item-action list-group-item-light p-3"
-            >Notice</router-link
+            >Announcement</router-link
           >
           <router-link
             to="/news"
