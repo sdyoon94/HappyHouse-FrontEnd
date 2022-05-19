@@ -1,14 +1,17 @@
 <template>
-  <tr>
-    <router-link :to="{ name: 'qnaDetail', params: { QnAIndex: qnAIndex } }">
-      <td>{{ qnAIndex }}</td>
-      <td>
-        {{ qnATitle }}
-      </td>
-      <td>{{ userId }}</td>
-      <td>{{ qnARegtime }}</td>
-    </router-link>
-  </tr>
+  <!-- <tr> -->
+  <router-link
+    :to="{ name: 'qnaDetail', params: { QnAIndex: qnAIndex } }"
+    tag="tr"
+  >
+    <td>{{ qnAIndex }}</td>
+    <td class="text-start">
+      {{ qnATitle }}
+    </td>
+    <td>{{ userId }}</td>
+    <td>{{ qnARegtime }}</td>
+  </router-link>
+  <!-- </tr> -->
 </template>
 
 <script>
