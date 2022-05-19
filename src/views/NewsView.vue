@@ -1,10 +1,11 @@
 <template>
-  <div class="news">뉴스 크롤링 노출 페이지</div>
+  <news-list></news-list>
 </template>
 
 <script>
+import NewsList from "@/components/news/NewsList.vue";
 export default {
   name: "NewsView",
-  components: {},
+  components: { NewsList },
 };
 </script>
