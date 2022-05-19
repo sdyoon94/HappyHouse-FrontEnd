@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import QnaView from "@/views/QnaView";
+import AnnouncementView from "@/views/AnnouncementView.vue";
 import RegisterView from "@/views/RegisterView";
 import LoginView from "@/views/LoginView";
 
@@ -14,9 +15,36 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/notice",
-    name: "notice",
-    component: () => import("@/views/NoticeView"),
+    path: "/announcement",
+    name: "announcement",
+    component: AnnouncementView,
+    redirect: "/announcement/list",
+    children: [
+      {
+        path: "list",
+        name: "announcementList",
+        component: () =>
+          import("@/components/announcement/AnnouncementList.vue"),
+      },
+      {
+        path: "write",
+        name: "announcementRegist",
+        component: () =>
+          import("@/components/announcement/AnnouncementRegist.vue"),
+      },
+      {
+        path: "detail/:announcementNo",
+        name: "announcementDetail",
+        component: () =>
+          import("@/components/announcement/AnnouncementDetail.vue"),
+      },
+      {
+        path: "modify/:announcementNo",
+        name: "announcementModify",
+        component: () =>
+          import("@/components/announcement/AnnouncementModify.vue"),
+      },
+    ],
   },
   {
     path: "/news",
