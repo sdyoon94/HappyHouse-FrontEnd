@@ -57,6 +57,7 @@
     <div v-if="checkLogined()">
       <form action="" @submit="onSubmit">
         <input type="text" v-model="comment" required /><b-button
+          type="submit"
           variant="outline-success"
         >
           댓글 작성
