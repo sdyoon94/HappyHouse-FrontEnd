@@ -2,14 +2,28 @@
   <div>
     <h3>Q&A 목록</h3>
     <!-- <button @click="moveWrite()">글쓰기</button> -->
-    <b-button variant="outline-primary" v-if="checkLogined" @click="moveWrite()"
+    <b-button
+      variant="outline-primary"
+      v-if="checkLogined"
+      @click="moveWrite()"
+      class="float-end btn"
       >글쓰기</b-button
     >
-    <table v-if="qnaLists.length">
-      <td>번호</td>
-      <td>제목</td>
-      <td>작성자</td>
-      <td>작성시각</td>
+    <table v-if="qnaLists.length" class="table">
+      <colgroup>
+        <col class="col-1" />
+        <col class="col-6" />
+        <col class="col-2" />
+        <col class="col-2" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>제목</th>
+          <th>작성자</th>
+          <th>작성시각</th>
+        </tr>
+      </thead>
       <tbody>
         <qna-list-item
           v-for="qna in qnaLists"

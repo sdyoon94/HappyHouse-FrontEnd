@@ -1,15 +1,49 @@
 <template>
-  <div>
-    <div>
-      <h1>제목 : {{ qnaLists.qnATitle }}</h1>
-      <button @click="qnaList">목록</button>
-      <button @click="qnaModify" v-if="checkLogined()">수정하기</button>
-      <button @click="qnaDelete" v-if="checkLogined()">삭제하기</button>
-      <h2>작성 시각 : {{ qnaLists.qnARegtime }}</h2>
-      <h2>작성자 : {{ qnaLists.userId }}</h2>
-      {{ qnaLists.qnAContent }}
+  <div style="font-size: large">
+    <div class="float-end" style="padding: 10px">
+      <b-button @click="qnaList" variant="outline-primary">목록</b-button>
+      <b-button
+        @click="qnaModify"
+        v-if="checkLogined()"
+        variant="outline-warning"
+      >
+        수정하기
+      </b-button>
+      <b-button
+        @click="qnaDelete"
+        v-if="checkLogined()"
+        variant="outline-danger"
+      >
+        삭제하기
+      </b-button>
     </div>
-    <div v-show="qnaCommentList()">
+    <table class="table">
+      <thead>
+        <th class="col-9">제목</th>
+        <th class="col-1">작성자</th>
+        <th class="col-2">작성 시각</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ qnaLists.qnATitle }}</td>
+          <td>{{ qnaLists.userId }}</td>
+          <td>{{ qnaLists.qnARegtime }}</td>
+        </tr>
+        <tr>
+          <th colspan="3">내 용</th>
+        </tr>
+        <tr style="height: 30vh">
+          <th colspan="3" class="text-left" style="padding: 30px">
+            {{ qnaLists.qnAContent }}
+          </th>
+        </tr>
+      </tbody>
+    </table>
+    <div v-show="qnaCommentList()" class="flex">
+      <colgroup>
+        <col class="col-10" />
+        <col class="col-4" />
+      </colgroup>
       <tr>
         <th>내용</th>
         <th>작성 시간</th>
@@ -22,9 +56,11 @@
     </div>
     <div v-if="checkLogined()">
       <form action="" @submit="onSubmit">
-        <input type="text" v-model="comment" required /><button>
+        <input type="text" v-model="comment" required /><b-button
+          variant="outline-success"
+        >
           댓글 작성
-        </button>
+        </b-button>
       </form>
     </div>
   </div>
