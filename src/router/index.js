@@ -83,6 +83,11 @@ const routes = [
         name: "qnaModify",
         component: () => import("@/components/qna/QnaModify.vue"),
       },
+      {
+        path: "/findpw",
+        name: "userfindpw",
+        component: () => import("@/components/user/UserFindPw.vue"),
+      },
     ],
   },
   {

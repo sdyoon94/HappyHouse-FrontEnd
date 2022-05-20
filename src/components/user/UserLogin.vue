@@ -29,8 +29,9 @@
         <div class="valid">적합합니다.</div>
         <div class="invalid">8자 미만 혹은 12자 초과입니다.</div>
       </div>
-      <button type="submit" class="btn btn-primary">확인</button>
+      <button type="submit" class="btn btn-success">확인</button>
     </form>
+    <button class="btn btn-warning" @click="moveFindPw">비밀번호 찾기</button>
   </div>
 </template>
 
@@ -102,11 +103,14 @@ export default {
           console.log("오류 발생");
         });
     },
+    moveFindPw() {
+      this.$router.push({ path: "/findpw" });
+    },
   },
 };
 </script>
 
-<style>
+<style scoped>
 .valid {
   display: none;
   width: 100%;
@@ -120,5 +124,8 @@ export default {
   margin-top: 0.25rem;
   font-size: 0.875em;
   color: #dc3545;
+}
+button {
+  margin-top: 30px;
 }
 </style>
