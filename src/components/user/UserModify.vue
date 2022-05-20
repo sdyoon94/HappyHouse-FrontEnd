@@ -64,7 +64,7 @@
         <label for="email">E-mail :</label>&nbsp;
         <input
           type="text"
-          placeholder="Enter password"
+          placeholder="Enter Email"
           v-model="user.email"
           required
         />
