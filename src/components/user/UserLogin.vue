@@ -67,8 +67,16 @@ export default {
           userPwd: this.userpwd,
         })
         .then((data) => {
-          console.log(data);
-          console.log(data.config.data);
+          if (typeof data.data === "string") {
+            alert("ID 혹은 PW가 틀렸습니다.");
+          } else {
+            this.setLogined({
+              userId: data.data.userId,
+              username: data.data.userName,
+              email: data.data.email,
+              joindate: data.data.joinDate,
+            });
+          }
         })
         .catch(() => {
           console.log("오류 발생");
