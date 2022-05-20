@@ -9,10 +9,8 @@
           type="text"
           placeholder="Enter ID"
           v-model="user.userId"
-          required
+          disabled
         />
-        <div class="valid-feedback">적합합니다.</div>
-        <div class="invalid-feedback">6자 미만 혹은 12자 초과입니다.</div>
       </div>
       <div class="form-group">
         <label>Password :</label>&nbsp;
@@ -20,25 +18,38 @@
           type="password"
           placeholder="Enter password"
           v-model="user.userPwd"
+          id="userPw"
+          @keyup="pwLengthCheck"
           required
         />
-        <div class="valid-feedback">적합합니다.</div>
-        <div class="invalid-feedback">8자 미만 혹은 12자 초과입니다.</div>
+        <div class="valid">적합합니다.</div>
+        <div class="invalid">8자 미만 혹은 12자 초과입니다.</div>
       </div>
       <div class="form-group">
         <label>변경 Password :</label>&nbsp;
         <input
           type="password"
+          id="newUserPw"
           placeholder="Enter new password"
           v-model="user.newUserPwd"
+          @keyup="[newPwLengthCheck(), pwCheck()]"
           required
         />
+        <div class="valid">적합합니다.</div>
+        <div class="invalid">8자 미만 혹은 12자 초과입니다.</div>
       </div>
       <div class="form-group">
         <label>변경 Password 확인 :</label>&nbsp;
-        <input type="password" placeholder="Enter new password" required />
-        <div class="valid-feedback">변경 Password가 일치 합니다.</div>
-        <div class="invalid-feedback">변경 Password가 불일치 합니다.</div>
+        <input
+          type="password"
+          placeholder="Enter new password"
+          id="newUserPwCheck"
+          @keyup="pwCheck"
+          v-model="user.newUserPwdCheck"
+          required
+        />
+        <div class="valid">변경 Password가 일치 합니다.</div>
+        <div class="invalid">변경 Password가 불일치 합니다.</div>
       </div>
       <div class="form-group">
         <label>Name :</label>&nbsp;
@@ -74,6 +85,7 @@ export default {
         userId: this.$store.state.logined.userId,
         userPwd: "",
         newUserPwd: "",
+        newUserPwdCheck: "",
         username: this.$store.state.logined.username,
         email: this.$store.state.logined.email,
         joindate: this.$store.state.logined.joindate,
@@ -86,18 +98,70 @@ export default {
     },
   },
   methods: {
+    pwLengthCheck() {
+      var valid = document.querySelector("#userPw ~ .valid");
+      var invalid = document.querySelector("#userPw ~ .invalid");
+      var minLength = 8;
+      if (this.user.userPwd.length == 0) {
+        valid.style.display = "none";
+        invalid.style.display = "none";
+        return false;
+      } else if (
+        this.user.userPwd.length >= minLength &&
+        this.user.userPwd.length <= 12
+      ) {
+        valid.style.display = "block";
+        invalid.style.display = "none";
+        return true;
+      } else {
+        valid.style.display = "none";
+        invalid.style.display = "block";
+        return false;
+      }
+    },
+    newPwLengthCheck() {
+      var valid = document.querySelector("#newUserPw ~ .valid");
+      var invalid = document.querySelector("#newUserPw ~ .invalid");
+      var minLength = 8;
+      if (this.user.newUserPwd.length == 0) {
+        valid.style.display = "none";
+        invalid.style.display = "none";
+        return false;
+      } else if (
+        this.user.newUserPwd.length >= minLength &&
+        this.user.newUserPwd.length <= 12
+      ) {
+        valid.style.display = "block";
+        invalid.style.display = "none";
+        return true;
+      } else {
+        valid.style.display = "none";
+        invalid.style.display = "block";
+        return false;
+      }
+    },
+    pwCheck() {
+      var valid = document.querySelector("#newUserPwCheck ~ .valid");
+      var invalid = document.querySelector("#newUserPwCheck ~ .invalid");
+      if (this.user.newUserPwd === this.user.newUserPwdCheck) {
+        valid.style.display = "block";
+        invalid.style.display = "none";
+        return false;
+      } else {
+        valid.style.display = "none";
+        invalid.style.display = "block";
+        return false;
+      }
+    },
     onSubmit(event) {
       event.preventDefault();
       http
-        .get("/user/check", {
+        .post("/user/check", {
           userId: this.user.userId,
           userPwd: this.user.userPwd,
-          userName: this.user.username,
-          email: this.user.email,
         })
         .then((data) => {
-          console.log(data);
-          if (data) {
+          if (data.data) {
             http
               .post("/user/modify", {
                 userId: this.user.userId,
