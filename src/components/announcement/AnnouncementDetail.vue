@@ -93,44 +93,6 @@ export default {
         this.$router.go();
       }
     },
-    announcementCommentList() {
-      if (this.announcementCommentLists.length != 0) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    onSubmit(event) {
-      event.preventDefault();
-      this.commentRegist();
-    },
-    commentRegist() {
-      http
-        .post(`/announcement/comment/${this.$route.params.announcementNo}`, {
-          commentContent: this.comment,
-          announcementNo: this.$route.params.announcementNo,
-        })
-        .then(({ data }) => {
-          console.log(data);
-          this.comment = "";
-          let msg = "등록이 완료되었습니다.";
-          alert(msg);
-          http
-            .get(`/announcement/comment/${this.$route.params.announcementNo}`)
-            .then(({ data }) => {
-              this.announcementCommentLists = data;
-            })
-            .catch(() => {
-              let msg = "등록 중 오류가 발생하였습니다.";
-              alert(msg);
-            });
-
-          // this.$router.push({
-          //   name: "announcementDetail",
-          //   params: { announcementNo: this.$route.params.announcementNo },
-          // });
-        });
-    },
   },
 };
 </script>
