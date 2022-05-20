@@ -70,6 +70,11 @@
                 <li class="nav-item">
                   <router-link to="/login" class="nav-link">로그인</router-link>
                 </li>
+                <li class="nav-item">
+                  <router-link to="/userinfo" class="nav-link"
+                    >회원정보</router-link
+                  >
+                </li>
               </ul>
             </div>
           </div>
@@ -89,6 +94,11 @@
 export default {
   name: "App",
   components: {},
+  data() {
+    return {
+      // logined: true,
+    };
+  },
 };
 </script>
 

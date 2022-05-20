@@ -2,12 +2,11 @@
   <div>
     <h1>로그인</h1>
     <br />
-    <form action="" @submit="onSubmit" class="was-validated col-*-12">
+    <form action="" @submit="onSubmit" class="was-validated">
       <div class="form-group">
-        <label for="uname">ID :</label>&nbsp;
+        <label>ID :</label>&nbsp;
         <input
           type="text"
-          id="uname"
           placeholder="Enter ID"
           name="uname"
           v-model="userid"
@@ -17,12 +16,10 @@
         <div class="invalid-feedback">6자 미만 혹은 12자 초과입니다.</div>
       </div>
       <div class="form-group">
-        <label for="pwd">Password :</label>&nbsp;
+        <label>Password :</label>&nbsp;
         <input
           type="password"
-          id="pwd"
           placeholder="Enter password"
-          name="pswd"
           v-model="userpwd"
           required
         />
@@ -44,8 +41,6 @@ export default {
     return {
       userid: "",
       userpwd: "",
-      correctId: false,
-      correctPw: false,
     };
   },
   methods: {

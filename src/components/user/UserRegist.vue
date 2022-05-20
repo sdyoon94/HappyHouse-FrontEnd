@@ -4,25 +4,16 @@
     <br />
     <form action="" @submit="onSubmit" class="was-validated col-*-12">
       <div class="form-group">
-        <label for="userId">ID :</label>&nbsp;
-        <input
-          type="text"
-          id="userId"
-          placeholder="Enter ID"
-          name="userId"
-          v-model="userId"
-          required
-        />
+        <label>ID :</label>&nbsp;
+        <input type="text" placeholder="Enter ID" v-model="userId" required />
         <div class="valid-feedback">적합합니다.</div>
         <div class="invalid-feedback">6자 미만 혹은 12자 초과입니다.</div>
       </div>
       <div class="form-group">
-        <label for="userPwd">Password :</label>&nbsp;
+        <label>Password :</label>&nbsp;
         <input
           type="password"
-          id="userPwd"
           placeholder="Enter password"
-          name="userPwd"
           v-model="userPwd"
           required
         />
@@ -30,13 +21,11 @@
         <div class="invalid-feedback">8자 미만 혹은 12자 초과입니다.</div>
       </div>
       <div class="form-group">
-        <label for="username">Name :</label>&nbsp;
+        <label>Name :</label>&nbsp;
         <input
           type="text"
-          id="username"
           placeholder="Enter password"
-          name="username"
-          v-model="username"
+          v-model="userName"
           required
         />
       </div>
@@ -44,9 +33,7 @@
         <label for="email">E-mail :</label>&nbsp;
         <input
           type="text"
-          id="email"
           placeholder="Enter password"
-          name="email"
           v-model="email"
           required
         />
