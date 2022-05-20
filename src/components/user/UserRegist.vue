@@ -118,6 +118,7 @@ export default {
           })
           .catch(() => {
             this.userId = "";
+            this.idCheck();
             document.getElementById("userId").focus();
             alert("이미 존재하는 ID입니다.");
           });
