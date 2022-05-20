@@ -6,25 +6,28 @@
       <div class="form-group">
         <label>ID :</label>&nbsp;
         <input
+          id="userId"
           type="text"
           placeholder="Enter ID"
-          name="uname"
-          v-model="userid"
+          v-model="userId"
           required
+          @keyup="idCheck"
         />
-        <div class="valid-feedback">적합합니다.</div>
-        <div class="invalid-feedback">6자 미만 혹은 12자 초과입니다.</div>
+        <div class="valid">적합합니다.</div>
+        <div class="invalid">6자 미만 혹은 12자 초과입니다.</div>
       </div>
       <div class="form-group">
         <label>Password :</label>&nbsp;
         <input
+          id="userPwd"
           type="password"
           placeholder="Enter password"
-          v-model="userpwd"
+          v-model="userPwd"
           required
+          @keyup="pwdCheck"
         />
-        <div class="valid-feedback">적합합니다.</div>
-        <div class="invalid-feedback">8자 미만 혹은 12자 초과입니다.</div>
+        <div class="valid">적합합니다.</div>
+        <div class="invalid">8자 미만 혹은 12자 초과입니다.</div>
       </div>
       <button type="submit" class="btn btn-primary">확인</button>
     </form>
@@ -39,27 +42,47 @@ export default {
   components: {},
   data() {
     return {
-      userid: "",
-      userpwd: "",
+      userId: "",
+      userPwd: "",
     };
   },
   methods: {
     ...mapMutations(["setLogined"]),
-    lengthCheck(type) {
-      if (type === "id") {
-        if (this.userId.length >= 6 && this.userId.length <= 12) return true;
-        else return false;
+
+    idCheck() {
+      var valid = document.querySelector("#userId ~ .valid");
+      var invalid = document.querySelector("#userId ~ .invalid");
+      if (this.userId.length == 0) {
+        valid.style.display = "none";
+        invalid.style.display = "none";
+      } else if (this.userId.length >= 6 && this.userId.length <= 12) {
+        valid.style.display = "block";
+        invalid.style.display = "none";
       } else {
-        if (this.userPw.length >= 8 && this.userPw.length <= 12) return true;
-        else return false;
+        valid.style.display = "none";
+        invalid.style.display = "block";
+      }
+    },
+    pwdCheck() {
+      var valid = document.querySelector("#userPwd ~ .valid");
+      var invalid = document.querySelector("#userPwd ~ .invalid");
+      if (this.userPwd.length == 0) {
+        valid.style.display = "none";
+        invalid.style.display = "none";
+      } else if (this.userPwd.length >= 8 && this.userPwd.length <= 12) {
+        valid.style.display = "block";
+        invalid.style.display = "none";
+      } else {
+        valid.style.display = "none";
+        invalid.style.display = "block";
       }
     },
     onSubmit(event) {
       event.preventDefault();
       http
         .post("/user/login", {
-          userId: this.userid,
-          userPwd: this.userpwd,
+          userId: this.userId,
+          userPwd: this.userPwd,
         })
         .then((data) => {
           if (typeof data.data === "string") {
@@ -83,4 +106,19 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.valid {
+  display: none;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: #198754;
+}
+.invalid {
+  display: none;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: #dc3545;
+}
+</style>
