@@ -5,7 +5,7 @@
     <form action="" @submit="onSubmit" class="was-validated col-*-12">
       <div class="form-group">
         <label>ID :</label>&nbsp;
-        <input type="text" placeholder="Enter ID" v-model="userId" required />
+        <input id="userId" placeholder="Enter ID" v-model="userId" required />
         <div class="valid-feedback">적합합니다.</div>
         <div class="invalid-feedback">6자 미만 혹은 12자 초과입니다.</div>
       </div>
@@ -66,12 +66,13 @@ export default {
           userName: this.userName,
           email: this.email,
         })
-        .then((data) => {
-          console.log(data);
-          console.log(data.config.data);
+        .then(() => {
+          this.$router.push("login");
         })
         .catch(() => {
-          console.log("오류 발생");
+          this.userId = "";
+          document.getElementById("userId").focus();
+          alert("이미 존재하는 ID입니다.");
         });
     },
   },
