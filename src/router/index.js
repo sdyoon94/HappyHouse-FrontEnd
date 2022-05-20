@@ -4,6 +4,8 @@ import HomeView from "../views/HomeView.vue";
 import QnaView from "@/views/QnaView";
 import AnnouncementView from "@/views/AnnouncementView.vue";
 import RegisterView from "@/views/RegisterView";
+import LoginView from "@/views/LoginView";
+import UserInfo from "@/views/UserInfoView";
 
 Vue.use(VueRouter);
 
@@ -91,12 +93,12 @@ const routes = [
   {
     path: "/login",
     name: "login",
-    components: import("@/views/LoginView"),
+    component: LoginView,
   },
   {
     path: "/userinfo",
     name: "info",
-    components: import("@/views/UserInfoView"),
+    component: UserInfo,
   },
 ];
 
