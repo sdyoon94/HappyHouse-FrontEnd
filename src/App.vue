@@ -62,17 +62,22 @@
                     >Home</router-link
                   >
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" v-if="!loginCheck">
                   <router-link to="/register" class="nav-link"
                     >회원가입</router-link
                   >
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" v-if="!loginCheck">
                   <router-link to="/login" class="nav-link">로그인</router-link>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" v-if="loginCheck">
                   <router-link to="/userinfo" class="nav-link"
                     >회원정보</router-link
+                  >
+                </li>
+                <li class="nav-item" v-if="loginCheck" @click="logout">
+                  <router-link to="/" class="nav-link" replace
+                    >로그아웃</router-link
                   >
                 </li>
               </ul>
@@ -89,15 +94,28 @@
 </template>
 
 <script>
-// import HeaderNav from "@/components/HeaderNav.vue";
+import { mapMutations } from "vuex";
 
 export default {
   name: "App",
   components: {},
   data() {
     return {
-      // logined: true,
+      // loginCheck: true,
+      loginCheck: this.$store.state.logined.userId === "" ? false : true,
     };
+  },
+  computed: {
+    logined() {
+      return this.$store.state.logined;
+    },
+  },
+  methods: {
+    ...mapMutations(["setLogout"]),
+    logout() {
+      this.setLogout();
+      this.$router.go();
+    },
   },
 };
 </script>

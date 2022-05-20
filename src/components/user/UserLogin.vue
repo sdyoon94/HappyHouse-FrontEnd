@@ -71,6 +71,8 @@ export default {
               email: data.data.email,
               joindate: data.data.joinDate,
             });
+            this.$router.go();
+            this.$router.push("/");
           }
         })
         .catch(() => {

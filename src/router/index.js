@@ -100,6 +100,11 @@ const routes = [
     name: "info",
     component: UserInfo,
   },
+  {
+    path: "/usermodify/:userid",
+    name: "usermodify",
+    component: () => import("@/components/user/UserModify.vue"),
+  },
 ];
 
 const router = new VueRouter({
