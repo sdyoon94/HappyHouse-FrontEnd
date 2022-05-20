@@ -2,7 +2,7 @@
   <div>
     <h1>로그인</h1>
     <br />
-    <form action="" class="was-validated col-*-12">
+    <form action="" @submit="onSubmit" class="was-validated col-*-12">
       <div class="form-group">
         <label for="uname">ID :</label>&nbsp;
         <input
@@ -10,7 +10,7 @@
           id="uname"
           placeholder="Enter ID"
           name="uname"
-          v-model="userId"
+          v-model="userid"
           required
         />
         <div class="valid-feedback">적합합니다.</div>
@@ -23,7 +23,7 @@
           id="pwd"
           placeholder="Enter password"
           name="pswd"
-          v-model="userPw"
+          v-model="userpwd"
           required
         />
         <div class="valid-feedback">적합합니다.</div>
@@ -35,18 +35,21 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+import http from "@/api/http";
 export default {
   name: "UserLogin",
   components: {},
   data() {
     return {
-      userId: "",
-      userPw: "",
+      userid: "",
+      userpwd: "",
       correctId: false,
       correctPw: false,
     };
   },
   methods: {
+    ...mapMutations(["setLogined"]),
     lengthCheck(type) {
       if (type === "id") {
         if (this.userId.length >= 6 && this.userId.length <= 12) return true;
@@ -55,6 +58,21 @@ export default {
         if (this.userPw.length >= 8 && this.userPw.length <= 12) return true;
         else return false;
       }
+    },
+    onSubmit(event) {
+      event.preventDefault();
+      http
+        .post("/user/login", {
+          userId: this.userid,
+          userPwd: this.userpwd,
+        })
+        .then((data) => {
+          console.log(data);
+          console.log(data.config.data);
+        })
+        .catch(() => {
+          console.log("오류 발생");
+        });
     },
   },
 };
