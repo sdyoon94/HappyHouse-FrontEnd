@@ -4,7 +4,7 @@
     <!-- <button @click="moveWrite()">글쓰기</button> -->
     <b-button
       variant="outline-primary"
-      v-if="checkLogined"
+      v-if="checkLogined()"
       @click="moveWrite()"
       class="float-end btn"
       >글쓰기</b-button
@@ -47,7 +47,6 @@ export default {
   data() {
     return {
       qnaLists: [],
-      loginedUser: "admin",
     };
   },
   created() {
@@ -56,11 +55,18 @@ export default {
     });
   },
   methods: {
+    ifadmin() {
+      if (this.$store.state.logined.userId.length < 6) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     moveWrite() {
       this.$router.push({ name: "qnaRegist" });
     },
     checkLogined() {
-      if (this.loginedUser === "admin") {
+      if (this.$store.state.logined.userId.length != 0) {
         return true;
       } else {
         return false;

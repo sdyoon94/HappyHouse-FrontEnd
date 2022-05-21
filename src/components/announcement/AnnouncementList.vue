@@ -3,7 +3,7 @@
     <h3>공지사항</h3>
     <b-button
       variant="outline-primary"
-      v-if="checkLogined"
+      v-if="ifadmin()"
       @click="moveWrite()"
       class="float-end btn"
       >글쓰기</b-button
@@ -46,7 +46,6 @@ export default {
   data() {
     return {
       announcementLists: [],
-      loginedUser: "admin",
     };
   },
   created() {
@@ -58,8 +57,8 @@ export default {
     moveWrite() {
       this.$router.push({ name: "announcementRegist" });
     },
-    checkLogined() {
-      if (this.loginedUser === "admin") {
+    ifadmin() {
+      if (this.$store.state.logined.userId.length < 6) {
         return true;
       } else {
         return false;

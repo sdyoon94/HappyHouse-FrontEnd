@@ -32,7 +32,6 @@ export default {
       //   },
       // ],
       qnaCommentLists: [],
-      loginedUser: "admin",
     };
   },
   created() {

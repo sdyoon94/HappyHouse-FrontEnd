@@ -2,18 +2,10 @@
   <div style="font-size: large">
     <div class="float-end" style="padding: 10px">
       <b-button @click="qnaList" variant="outline-primary">목록</b-button>
-      <b-button
-        @click="qnaModify"
-        v-if="checkLogined()"
-        variant="outline-warning"
-      >
+      <b-button @click="qnaModify" v-if="ifadmin()" variant="outline-warning">
         수정하기
       </b-button>
-      <b-button
-        @click="qnaDelete"
-        v-if="checkLogined()"
-        variant="outline-danger"
-      >
+      <b-button @click="qnaDelete" v-if="ifadmin()" variant="outline-danger">
         삭제하기
       </b-button>
     </div>
@@ -54,7 +46,7 @@
         v-bind="comment"
       ></qna-comment-item>
     </div>
-    <div v-if="checkLogined()">
+    <div v-if="ifadmin()">
       <form action="" @submit="onSubmit">
         <input type="text" v-model="comment" required /><b-button
           type="submit"
@@ -76,17 +68,8 @@ export default {
   data() {
     return {
       qnaLists: [],
-      // qnaCommentLists: [
-      //   {
-      //     commentIndex: 1,
-      //     commentContent: "commentContent",
-      //     commentRegtime: "2022-02-02 13:22:22",
-      //     QnAIndex: 1,
-      //   },
-      // ],
       qnaCommentLists: [],
       comment: "",
-      loginedUser: "admin",
     };
   },
   created() {
@@ -101,8 +84,8 @@ export default {
     });
   },
   methods: {
-    checkLogined() {
-      if (this.loginedUser === "admin") {
+    ifadmin() {
+      if (this.$store.state.logined.userId.length < 6) {
         return true;
       } else {
         return false;
@@ -159,11 +142,6 @@ export default {
               let msg = "등록 중 오류가 발생하였습니다.";
               alert(msg);
             });
-
-          // this.$router.push({
-          //   name: "qnaDetail",
-          //   params: { QnAIndex: this.$route.params.QnAIndex },
-          // });
         });
     },
   },

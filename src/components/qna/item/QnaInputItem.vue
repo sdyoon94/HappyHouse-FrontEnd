@@ -53,7 +53,7 @@ export default {
         userId: "admin",
         QnATitle: "",
         QnAcontent: "",
-        Private: false,
+        private: false,
       },
     };
   },
@@ -66,7 +66,7 @@ export default {
         this.qna.userId = data.userId;
         this.qna.QnATitle = data.qnATitle;
         this.qna.QnAcontent = data.qnAContent;
-        this.qna.Private = data.private;
+        this.qna.private = data.private;
       });
     }
   },
@@ -94,25 +94,24 @@ export default {
       this.qna.QnAcontent = "";
     },
     registQna() {
-      console.log(this.qna),
-        http
-          .post(`/qna`, {
-            userId: this.qna.userId,
-            qnATitle: this.qna.QnATitle,
-            qnAContent: this.qna.QnAcontent,
-            private1: this.qna.private,
-          })
-          .then(({ data }) => {
-            console.log("결과 : ", data);
-            let msg = "등록이 완료되었습니다.";
-            alert(msg);
-            this.moveList();
-          })
-          .catch(() => {
-            let msg = "등록 중 오류가 발생하였습니다.";
-            alert(msg);
-            this.moveList();
-          });
+      http
+        .post(`/qna`, {
+          userId: this.qna.userId,
+          qnATitle: this.qna.QnATitle,
+          qnAContent: this.qna.QnAcontent,
+          private1: this.qna.private === true ? 1 : 0,
+        })
+        .then(({ data }) => {
+          data;
+          let msg = "등록이 완료되었습니다.";
+          alert(msg);
+          this.moveList();
+        })
+        .catch(() => {
+          let msg = "등록 중 오류가 발생하였습니다.";
+          alert(msg);
+          this.moveList();
+        });
     },
     modifyQna() {
       console.log("modify"),
@@ -122,7 +121,7 @@ export default {
             userId: this.qna.userId,
             qnATitle: this.qna.QnATitle,
             qnAContent: this.qna.QnAcontent,
-            private1: this.qna.private,
+            private1: this.qna.private === true ? 1 : 0,
           })
           .then(({ data }) => {
             console.log("결과 : ", data);
