@@ -41,7 +41,8 @@ export default {
     printCheck() {
       if (this.private1 === 1) {
         if (
-          this.$store.state.logined.userId.length < 6 ||
+          (this.$store.state.logined.userId.length > 0 &&
+            this.$store.state.logined.userId.length < 6) ||
           this.$store.state.logined.userId === this.userId
         ) {
           return true;

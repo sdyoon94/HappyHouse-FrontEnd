@@ -80,7 +80,6 @@ export default {
     });
     http.get(`/qna/comment/${this.$route.params.QnAIndex}`).then(({ data }) => {
       this.qnaCommentLists = data;
-      console.log(this.qnaCommentLists);
     });
   },
   methods: {

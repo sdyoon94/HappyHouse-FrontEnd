@@ -6,6 +6,7 @@ import AnnouncementView from "@/views/AnnouncementView.vue";
 import RegisterView from "@/views/RegisterView";
 import LoginView from "@/views/LoginView";
 import UserInfo from "@/views/UserInfoView";
+import store from "@/store";
 
 Vue.use(VueRouter);
 
@@ -77,6 +78,14 @@ const routes = [
         path: "detail/:QnAIndex",
         name: "qnaDetail",
         component: () => import("@/components/qna/QnaDetail.vue"),
+        beforeEnter: (to, from, next) => {
+          to, from;
+          if (store.state.logined.userId.length == 0) {
+            alert("로그인이 필요합니다.");
+          } else {
+            next();
+          }
+        },
       },
       {
         path: "modify/:QnAIndex",
@@ -89,6 +98,14 @@ const routes = [
         component: () => import("@/components/user/UserFindPw.vue"),
       },
     ],
+  },
+  {
+    path: "*",
+    redirect: "/404",
+  },
+  {
+    path: "/404",
+    component: () => import("@/views/ErrorPageView.vue"),
   },
   {
     path: "/register",

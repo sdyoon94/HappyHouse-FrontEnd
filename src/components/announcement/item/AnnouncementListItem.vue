@@ -6,6 +6,7 @@
       params: { announcementNo: announcementNo },
     }"
     tag="tr"
+    style="cursor: pointer"
   >
     <td>{{ announcementNo }}</td>
     <td class="text-start">

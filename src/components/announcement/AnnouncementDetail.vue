@@ -52,7 +52,6 @@ export default {
   data() {
     return {
       announcementLists: [],
-      loginedUser: "admin",
     };
   },
   created() {
@@ -60,7 +59,6 @@ export default {
       .get(`/announcement/${this.$route.params.announcementNo}`)
       .then(({ data }) => {
         this.announcementLists = data;
-        console.log(data);
       });
   },
   methods: {
@@ -85,7 +83,7 @@ export default {
         http
           .delete(`/announcement/${this.$route.params.announcementNo}`)
           .then(({ data }) => {
-            console.log(data);
+            data;
             alert("삭제하였습니다.");
           });
 
