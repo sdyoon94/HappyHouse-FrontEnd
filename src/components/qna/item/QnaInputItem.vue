@@ -50,7 +50,7 @@ export default {
   data() {
     return {
       qna: {
-        userId: "admin",
+        userId: "",
         QnATitle: "",
         QnAcontent: "",
         private: false,
@@ -96,7 +96,7 @@ export default {
     registQna() {
       http
         .post(`/qna`, {
-          userId: this.qna.userId,
+          userId: this.$store.state.logined.userId,
           qnATitle: this.qna.QnATitle,
           qnAContent: this.qna.QnAcontent,
           private1: this.qna.private === true ? 1 : 0,

@@ -58,7 +58,10 @@ export default {
       this.$router.push({ name: "announcementRegist" });
     },
     ifadmin() {
-      if (this.$store.state.logined.userId.length < 6) {
+      if (
+        this.$store.state.logined.userId.length < 6 &&
+        this.$store.state.logined.userId.length != 0
+      ) {
         return true;
       } else {
         return false;
