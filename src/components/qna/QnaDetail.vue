@@ -2,7 +2,7 @@
   <div style="font-size: large">
     <div class="float-end" style="padding: 10px">
       <b-button @click="qnaList" variant="outline-primary">목록</b-button>
-      <b-button @click="qnaModify" v-if="ifadmin()" variant="outline-warning">
+      <b-button @click="qnaModify" v-if="ifwriter()" variant="outline-warning">
         수정하기
       </b-button>
       <b-button @click="qnaDelete" v-if="ifadmin()" variant="outline-danger">
@@ -83,8 +83,15 @@ export default {
     });
   },
   methods: {
+    ifwriter() {
+      if (this.$store.state.logined.userId === this.qnaLists.userId) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     ifadmin() {
-      if (this.$store.state.logined.userId.length < 6) {
+      if (this.$store.state.logined.userId.length < 6 || this.ifwriter) {
         return true;
       } else {
         return false;

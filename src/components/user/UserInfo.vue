@@ -2,26 +2,26 @@
   <div class="container align-items-center">
     <div class="row">
       <ul class="list-group list-group-horizontal list-group-flush">
-        <li class="list-group-item">ID</li>
-        <li class="list-group-item">{{ logined.userId }}</li>
+        <li class="list-group-item col-6">ID</li>
+        <li class="list-group-item col-6">{{ logined.userId }}</li>
       </ul>
     </div>
     <div class="row">
       <ul class="list-group list-group-horizontal list-group-flush">
-        <li class="list-group-item">Name</li>
-        <li class="list-group-item">{{ logined.username }}</li>
+        <li class="list-group-item col-6">Name</li>
+        <li class="list-group-item col-6">{{ logined.username }}</li>
       </ul>
     </div>
     <div class="row">
       <ul class="list-group list-group-horizontal list-group-flush">
-        <li class="list-group-item">Email</li>
-        <li class="list-group-item">{{ logined.email }}</li>
+        <li class="list-group-item col-6">Email</li>
+        <li class="list-group-item col-6">{{ logined.email }}</li>
       </ul>
     </div>
     <div class="row">
       <ul class="list-group list-group-horizontal list-group-flush">
-        <li class="list-group-item">가입일자</li>
-        <li class="list-group-item">{{ logined.joindate }}</li>
+        <li class="list-group-item col-6">가입일자</li>
+        <li class="list-group-item col-6">{{ logined.joindate }}</li>
       </ul>
     </div>
     <button type="button" class="btn btn-primary" @click="moveModify">
