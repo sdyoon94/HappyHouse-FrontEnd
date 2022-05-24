@@ -3,8 +3,7 @@
     <div class="card col-sm-12 mt-1" style="min-height: 850px">
       <div class="card-body">
         <div class="form-group form-inline justify-content-center">
-          <input type="text" v-model="dongCode" />
-          <button type="button" id="aptSearchBtn" @click="search">검색</button>
+          <button @click="APITest">주소 api</button>
         </div>
         <table class="table mt-2">
           <colgroup>
@@ -48,6 +47,7 @@
   </section>
 </template>
 
+<script src="//t1.daum.cdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 import http from "@/api/http";
 import kakaomap from "@/components/home/kakaomap/KakaoMap.vue";
@@ -64,6 +64,15 @@ export default {
       http.get(`/map/apt/${this.dongCode}`).then(({ data }) => {
         this.dealList = data;
       });
+    },
+    APITest() {
+      new daum.Postcode({
+        oncomplete: function (data) {
+          console.log(data);
+        },
+        width: "100%",
+        height: "100%",
+      }).open();
     },
   },
 };
