@@ -168,9 +168,6 @@ export default {
 <template>
   <div>
     <div id="map"></div>
-    <div class="button-group">
-      <button @click="displayMarker(dealList)">marker</button>
-    </div>
   </div>
 </template>
 
@@ -197,6 +194,11 @@ export default {
         "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=915cffed372954b7b44804ed422b9cf0";
       document.head.appendChild(script);
     }
+  },
+  watch: {
+    dealList: function () {
+      this.displayMarker(this.dealList);
+    },
   },
   methods: {
     initMap() {

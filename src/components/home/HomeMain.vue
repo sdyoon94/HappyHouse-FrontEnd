@@ -3,8 +3,10 @@
     <div class="card col-sm-12 mt-1" style="min-height: 850px">
       <div class="card-body">
         <div class="form-group form-inline justify-content-center">
-          <button @click="APITest()">주소 api</button>
+          <button @click="APITest()">주소 검색하기</button>
+          <button>현재위치 주변</button>
         </div>
+        <kakaomap :dealList="dealList"></kakaomap>
         <table class="table mt-2">
           <colgroup>
             <col width="10%" />
@@ -41,7 +43,6 @@
             </tr>
           </tbody>
         </table>
-        <kakaomap :dealList="dealList"></kakaomap>
       </div>
     </div>
   </section>
