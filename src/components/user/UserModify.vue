@@ -171,6 +171,8 @@ export default {
               })
               .then((data) => {
                 data;
+                this.$store.state.logined.username = this.user.username;
+                this.$store.state.logined.email = this.user.email;
                 alert("수정 완료하였습니다.");
                 this.$router.push("/");
               })
