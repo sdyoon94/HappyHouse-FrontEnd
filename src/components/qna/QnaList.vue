@@ -35,10 +35,16 @@
     <h2 v-else>등록된 글이 없습니다.</h2>
 
     <qna-pagination
+      v-if="qnaCurrList.length"
       :currPageNum="currPageNum"
       :totalPageNum="totalPageNum"
       @setPageNum="setPageNum"
     ></qna-pagination>
+    <input type="text" v-model="searchTitle" />&nbsp;<input
+      type="button"
+      @click="searchQnaList"
+      value="제목 검색"
+    />
   </div>
 </template>
 
@@ -59,6 +65,7 @@ export default {
       qnaCurrList: [],
       currPageNum: 1,
       totalPageNum: 0,
+      searchTitle: "",
     };
   },
   created() {
@@ -106,6 +113,28 @@ export default {
         return true;
       } else {
         return false;
+      }
+    },
+    searchQnaList() {
+      if (this.searchTitle === "") {
+        alert("검색칸이 비었습니다.");
+      } else {
+        this.currPageNum = 1;
+        http
+          .post(`/qna/search`, {
+            searchtitle: this.searchTitle,
+          })
+          .then(({ data }) => {
+            this.totalPageNum = Math.ceil(data.length / 10);
+            this.qnaLists = data;
+            this.qnaCurrList = this.qnaLists.slice(
+              this.currPageNum * 10 - 10,
+              this.currPageNum * 10
+            );
+          })
+          .catch(() => {
+            console.log("오류 발생");
+          });
       }
     },
   },

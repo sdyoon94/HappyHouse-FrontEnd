@@ -92,6 +92,11 @@ export default {
           console.log(data);
           this.dongCode = data.documents[0].code;
           this.dongName = data.documents[0].region_3depth_name;
+          // this.dongCode = 1144012300;
+          // this.dongName = "망원동";
+
+          // this.dongCode = 1111017100;
+          // this.dongName = "명륜2가";
           this.search();
         });
       });

@@ -85,13 +85,18 @@ export default {
   methods: {
     ifwriter() {
       if (this.$store.state.logined.userId === this.qnaLists.userId) {
+        console.log("ifwriter");
         return true;
       } else {
         return false;
       }
     },
     ifadmin() {
-      if (this.$store.state.logined.userId.length < 6 || this.ifwriter) {
+      if (
+        this.$store.state.logined.userId.length < 6 &&
+        this.$store.state.logined.userId.length > 0
+      ) {
+        console.log("ifadmin");
         return true;
       } else {
         return false;
