@@ -7,7 +7,6 @@
         <div class="sidebar-heading border-bottom bg-light">Happy House</div>
         <div class="list-group list-group-flush">
           <router-link
-            uter-link
             to="/"
             class="list-group-item list-group-item-action list-group-item-light p-3"
             >Home</router-link

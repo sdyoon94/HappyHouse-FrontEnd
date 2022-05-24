@@ -1,10 +1,13 @@
 <template>
-  <div class="home">아파트 검색 결과와 지도 노출 페이지</div>
+  <div class="home">
+    <home-main></home-main>
+  </div>
 </template>
 
 <script>
+import HomeMain from "../components/home/HomeMain.vue";
 export default {
   name: "HomeView",
-  components: {},
+  components: { HomeMain },
 };
 </script>
