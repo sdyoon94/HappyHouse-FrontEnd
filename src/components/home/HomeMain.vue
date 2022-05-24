@@ -3,7 +3,7 @@
     <div class="card col-sm-12 mt-1" style="min-height: 850px">
       <div class="card-body">
         <div class="form-group form-inline justify-content-center">
-          <button @click="APITest">주소 api</button>
+          <button @click="APITest()">주소 api</button>
         </div>
         <table class="table mt-2">
           <colgroup>
@@ -47,14 +47,13 @@
   </section>
 </template>
 
-<script src="//t1.daum.cdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 import http from "@/api/http";
 import kakaomap from "@/components/home/kakaomap/KakaoMap.vue";
 export default {
   data() {
     return {
-      dongCode: 0,
+      dongCode: "",
       dealList: null,
     };
   },
@@ -66,12 +65,11 @@ export default {
       });
     },
     APITest() {
-      new daum.Postcode({
-        oncomplete: function (data) {
-          console.log(data);
+      new window.daum.Postcode({
+        oncomplete: (data) => {
+          this.dongCode = data.bcode;
+          this.search();
         },
-        width: "100%",
-        height: "100%",
       }).open();
     },
   },
