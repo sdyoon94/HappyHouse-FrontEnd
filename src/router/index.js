@@ -99,10 +99,10 @@ const routes = [
       },
     ],
   },
-  // {
-  //   path: "*",
-  //   redirect: "/404",
-  // },
+  {
+    path: "*",
+    redirect: "/404",
+  },
   {
     path: "/404",
     component: () => import("@/views/ErrorPageView.vue"),
