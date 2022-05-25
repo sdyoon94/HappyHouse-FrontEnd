@@ -4,7 +4,9 @@
     <div class="d-flex" id="wrapper">
       <!-- Sidebar-->
       <div class="border-end bg-white" id="sidebar-wrapper">
-        <div class="sidebar-heading border-bottom bg-light">Happy House</div>
+        <div class="sidebar-heading border-bottom bg-light">
+          Happy House<br />8조 김희성 윤성도
+        </div>
         <div class="list-group list-group-flush">
           <router-link
             to="/"
