@@ -1,13 +1,13 @@
 <template>
   <!-- <tr> -->
   <router-link
-    :event="check ? 'click' : ''"
-    :style="check ? 'cursor:pointer' : ''"
+    :event="printCheck() ? 'click' : ''"
+    :style="printCheck() ? 'cursor:pointer' : ''"
     :to="{ name: 'qnaDetail', params: { QnAIndex: qnAIndex } }"
     tag="tr"
   >
     <td>{{ qnAIndex }}</td>
-    <td class="text-start" v-if="check">
+    <td class="text-start" v-if="printCheck()">
       {{ qnATitle }}
     </td>
     <td class="text-start" v-else>비공개 글입니다.</td>
@@ -30,12 +30,7 @@ export default {
     private1: Number,
   },
   data() {
-    return {
-      check: false,
-    };
-  },
-  created() {
-    this.check = this.printCheck();
+    return {};
   },
   methods: {
     printCheck() {

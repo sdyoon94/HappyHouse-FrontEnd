@@ -25,9 +25,12 @@
           <th colspan="3">내 용</th>
         </tr>
         <tr style="height: 30vh">
-          <th colspan="3" class="text-left" style="padding: 30px">
-            {{ qnaLists.qnAContent }}
-          </th>
+          <th
+            colspan="3"
+            class="text-left"
+            style="padding: 30px"
+            v-html="qnaLists.qnAContent"
+          ></th>
         </tr>
       </tbody>
     </table>
@@ -48,10 +51,12 @@
     </div>
     <div v-if="ifadmin()">
       <form action="" @submit="onSubmit">
-        <input type="text" v-model="comment" required /><b-button
-          type="submit"
-          variant="outline-success"
-        >
+        <input
+          type="text"
+          v-model="comment"
+          style="width: 500px"
+          required
+        /><b-button type="submit" variant="outline-success">
           댓글 작성
         </b-button>
       </form>
@@ -76,7 +81,6 @@ export default {
     // console.log(this.$route.params.QnAIndex),
     http.get(`/qna/${this.$route.params.QnAIndex}`).then(({ data }) => {
       this.qnaLists = data;
-      // console.log(data);
     });
     http.get(`/qna/comment/${this.$route.params.QnAIndex}`).then(({ data }) => {
       this.qnaCommentLists = data;
@@ -85,7 +89,6 @@ export default {
   methods: {
     ifwriter() {
       if (this.$store.state.logined.userId === this.qnaLists.userId) {
-        console.log("ifwriter");
         return true;
       } else {
         return false;
@@ -96,7 +99,6 @@ export default {
         this.$store.state.logined.userId.length < 6 &&
         this.$store.state.logined.userId.length > 0
       ) {
-        console.log("ifadmin");
         return true;
       } else {
         return false;

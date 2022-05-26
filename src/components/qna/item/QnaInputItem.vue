@@ -28,7 +28,9 @@
           ></b-form-textarea>
         </b-form-group>
 
-        <b-button type="submit" variant="primary" class="m-1">글작성</b-button>
+        <b-button type="submit" variant="primary" class="m-1">{{
+          typeString
+        }}</b-button>
         <b-button type="reset" variant="danger" class="m-1">초기화</b-button>
         <input
           type="checkbox"
@@ -55,6 +57,7 @@ export default {
         QnAcontent: "",
         private: false,
       },
+      typeString: "글 작성",
     };
   },
   props: {
@@ -67,6 +70,7 @@ export default {
         this.qna.QnATitle = data.qnATitle;
         this.qna.QnAcontent = data.qnAContent;
         this.qna.private = data.private;
+        this.typeString = "글 수정";
       });
     }
   },
@@ -124,7 +128,7 @@ export default {
             private1: this.qna.private === true ? 1 : 0,
           })
           .then(({ data }) => {
-            console.log("결과 : ", data);
+            data;
             let msg = "등록이 완료되었습니다.";
             alert(msg);
             this.moveList();
