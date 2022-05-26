@@ -27,14 +27,15 @@
       </thead>
       <tbody id="searchResult">
         <tr v-for="(item, i) in dealList" :key="i">
-          <td class="text-center">{{ item.aptCode }}</td>
-          <td class="text-center">{{ item.aptName }}</td>
+          <td class="text-center">{{ item.houseInfoDto.aptCode }}</td>
+          <td class="text-center">{{ item.houseInfoDto.aptName }}</td>
           <td class="text-center">
-            {{ item.sidoName }} {{ item.gugunName }} {{ item.dongName }}
-            {{ item.jibun }}
+            {{ item.houseInfoDto.sidoName }} {{ item.houseInfoDto.gugunName }}
+            {{ item.houseInfoDto.dongName }}
+            {{ item.houseInfoDto.jibun }}
           </td>
-          <td class="text-center">{{ item.buildYear }}</td>
-          <td class="text-center">{{ item.recentPrice }}</td>
+          <td class="text-center">{{ item.houseInfoDto.buildYear }}</td>
+          <td class="text-center">{{ item.houseInfoDto.recentPrice }}</td>
           <td class="text-center">
             {{ item.subwayLine }} {{ item.subwayName }}역
             {{ Math.round(item.subwayDistance * 1000) / 1000 }}km
@@ -89,7 +90,6 @@ export default {
             Authorization: "KakaoAK e6e830a1b3324a21b017d03c50161fbd",
           },
         }).then(({ data }) => {
-          console.log(data);
           this.dongCode = data.documents[0].code;
           this.dongName = data.documents[0].region_3depth_name;
           // this.dongCode = 1144012300;
